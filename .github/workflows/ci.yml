@@ -1,0 +1,31 @@
+# .github/workflows/ci.yml
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Make
+        # Можно добавить, если требуется стандартное окружение, обычно Make уже доступен
+
+      - name: Setup project dependencies
+        run: make setup
+
+      - name: Run tests
+        run: make test
+
+      - name: Run lint
+        run: make lint
