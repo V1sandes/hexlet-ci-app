@@ -1,5 +1,4 @@
-yaml
-name:  CI
+name: CI
 
 on:
   push:
@@ -14,9 +13,19 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Run make say-hello
-      run: make say-hello
-        run: make test
-
-      - name: Run lint
-        run: make lint
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Setup project
+      run: make setup
+      
+    - name: Run tests
+      run: make test
+      
+    - name: Run linter
+      run: make lint
+      
+    - name: Hello from Hexlet
+      uses: hexlet-components/hello-from-hexlet-action@release
